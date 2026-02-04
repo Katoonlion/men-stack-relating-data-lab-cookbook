@@ -6,6 +6,8 @@
   <title>Sign In</title>
 </head>
 <body>
+  <%- include('../partials/_navbar') %>
+
   <h1>Sign in</h1>
   <form action="/auth/sign-in" method="POST">
     <label for="username">Username:</label>
@@ -14,5 +16,8 @@
     <input type="password" name="password" id="password" required />
     <button type="submit">Sign in</button>
   </form>
+
+  <!-- <a class="go-back-link" href="/views/index.ejs">← Back to Full Menu</a> -->
+
 </body>
 </html>
