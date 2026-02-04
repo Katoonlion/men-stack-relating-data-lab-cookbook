@@ -45,11 +45,14 @@ app.use(passUserToView);
 
 // Controllers
 app.use('/auth', authController);
-app.use(isSignedIn);
-app.use('/users/:userId/foods', foodsController);
+
+// public routes (No need to log-in)
 app.use('/users', usersController);
+
+// protected routes (Need to log-in)
+app.use('/users/:userId/foods', isSignedIn, foodsController);
 app.use('/recipes', recipesController);
-app.use('/ingredients', ingredientsController);
+app.use('/ingredients', isSignedIn, ingredientsController);
 
 // View engine
 app.set("view engine", "ejs");

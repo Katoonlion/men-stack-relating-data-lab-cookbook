@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Recipe</title>
+<body>
+    <%- include('../partials/_navbar.ejs') %>
+
+    <h1>Add New Recipe</h1>
+    
+    <form action="/recipes" method="POST">
+        <div>
+            <label for="name">Recipe name</label>
+            <input id="name" name="name" type="text" required />
+        </div>
+
+        <br />
+
+        <h3>Select Ingredients</h3>
+        <% if (ingredients && ingredients.length > 0) { %>
+            <% ingredients.forEach(i => { %>
+                <label style="display:block">
+                    <input 
+                    type="checkbox" 
+                    name="ingredientIds" 
+                    value="<%= i._id %>"
+                    >
+                    <%= i.name %>
+                </label>
+            <% }) %>
+            <% } else { %>
+                <p>No ingredients yet.</p>
+        <% } %>
+
+        <hr />
+
+        <button type="submit">Create Recipe</button>
+    </form>
+
+        <h3>Add new ingredient</h3>
+
+        <form action="/ingredients" method="POST">
+            <input name="name" placeholder="e.g., Garlic" />
+            <button type="submit">Add Ingredient</button>
+        </form>
+        <br />
+
+  <p>
+    <a href="/recipes">← Back to Recipes</a>
+  </p>
+    
+</body>
+</html>

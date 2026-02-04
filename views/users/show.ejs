@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= profileUser.username %>'s Pantry</title>
+    <title><%= profileUser.username %>'s Recipes</title>
+
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
 
-    <h1><%= profileUser.username %>'s Pantry</h1>
+    <h1>Recipes by <%= profileUser.username %></h1>
 
-    <% if (pantry && pantry.length > 0) { %>
+    <% if (recipes && recipes.length > 0) { %>
         <ul>
-            <% pantry.forEach((food) => { %>
+            <% recipes.forEach((r) => { %>
                 <li>
-                    <%= food.name %>
+                    <a href="/recipes/<%= r._id %>"><%= r.name %></a>
                 </li>
             <% }) %>
         </ul>
     <% } else { %>
-        <p>There are no items in this pantry.</p>
+        <p>This user has no recipes yet.</p>
     <% } %>
 
     <p><a href="/users">← Back to Community</a></p>
